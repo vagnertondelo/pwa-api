@@ -104,7 +104,7 @@ exports.get = (req, res) => {
                     console.log("compara = " + comparar);
                     content[j] = "data:image/png;base64," + Buffer.from(directoryPacth + '/' + files[j]).toString('base64');//base64Img.base64(directoryPacth + '/' + files[i]);
                     // valorDefnido[j] = valor[n];
-                    valorFinal[j] = [{ valorDefnido: valor[n], imagem: content[j] }];
+                    valorFinal[j] = { valorDefnido: valor[n], imagem: content[j] };
 
                 }
             }
