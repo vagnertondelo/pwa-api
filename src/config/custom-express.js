@@ -1,18 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app =  express();
+//const router = express.Router();
 
 //minhas rotas
-const rotas = require('../app/rotas/rotas');
-const item = require('../app/rotas/item');
-
+const produto = require('../app/rotas/produto');
+const index = require('../app/rotas/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+
+app.use(index);
+app.use(produto);
+
 //chamadas das rotas no app
-rotas(app);
-item(app);
+//rotas(app);
+
 
 //exporta modulo app
 module.exports = app;
