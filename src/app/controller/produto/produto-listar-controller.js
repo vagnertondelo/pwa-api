@@ -1,6 +1,6 @@
 'use strict';
 const request = require('request');
-const API = 'http://192.168.15.12:8074/datasnap/rest/Produto/Listar';
+const API = 'http://192.168.15.39:8074/datasnap/rest/Produto/Listar';
 var path = require('path');
 var fs = require('fs');
 const imageToUri = require('image-to-uri');
@@ -26,11 +26,13 @@ request.post(API, {
 //metodos que serão esportados para o front-end
 exports.listar = (req, res, next) => {
     console.log("achou post listar");
+    content = valor.result[0].Retorno.Items;
     res.status(201).json(
-        valor
+        content
     )
 
 }
+
 
 exports.listaBebidas = (req, res) => {
     console.log("achou bebibdas")
