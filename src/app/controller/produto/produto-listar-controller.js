@@ -1,6 +1,6 @@
 'use strict';
 const request = require('request');
-const API = 'http://192.168.15.39:8074/datasnap/rest/Produto/Listar';
+const API = 'http://192.168.15.23:8074/datasnap/rest/Produto/Listar';
 var path = require('path');
 var fs = require('fs');
 const imageToUri = require('image-to-uri');

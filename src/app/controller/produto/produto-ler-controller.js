@@ -1,13 +1,26 @@
 'use strict';
 const request = require('request');
-const API = 'http://192.168.15.39:8074/datasnap/rest/Produto/Ler';
+const API = 'http://192.168.15.23:8074/datasnap/rest/Produto/Ler';
 var path = require('path');
 var fs = require('fs');
 const imageToUri = require('image-to-uri');
 
 let valor;
-let id;
 let content = [];
+
+//metodos que serão exportados para o front-end
+exports.ler = (req, res) => {
+    //console.log(res.params.id);
+    requisicao(req.params.id);
+    
+    setTimeout(() => {
+        content[0] = valor.result[0].Retorno;
+        res.status(200).json({
+            content
+        });
+    }, 100); 
+    console.log("Achou ler para ID : " + req.params.id);
+};
 
 //função request post
 function requisicao(id) {
@@ -18,25 +31,13 @@ function requisicao(id) {
             }
         },
         json: true
-
     }, (error, res, body) => {
         if (error) {
             console.log(error);
             valor = "Verifique conexão";
         } else {
+
             valor = body;
         }
     });
 }
-
-
-//metodos que serão esportados para o front-end
-exports.ler = (req, res) => {
-    requisicao(req.params.id);
-    console.log("Achou ler");
-    content = valor.result[0].Retorno;
-    res.status(200).json({
-        content
-    });
-    
-};
