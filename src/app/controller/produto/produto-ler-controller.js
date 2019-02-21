@@ -12,14 +12,14 @@ let content = [];
 exports.ler = (req, res) => {
     //console.log(res.params.id);
     requisicao(req.params.id);
-    
     setTimeout(() => {
         content[0] = valor.result[0].Retorno;
         res.status(200).json({
             content
         });
-    }, 100); 
-    console.log("Achou ler para ID : " + req.params.id);
+    }, 500); 
+    console.log("ID de busca" + req.params.id);
+    
 };
 
 //função request post

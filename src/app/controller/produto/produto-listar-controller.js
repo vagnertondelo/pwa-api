@@ -8,6 +8,8 @@ const imageToUri = require('image-to-uri');
 //variaveis 
 let valor;
 let content = [];
+let valorFinal = [];
+
 
 //request post
 request.post(API, {
@@ -42,20 +44,19 @@ exports.listaBebidas = (req, res) => {
     var files = fs.readdirSync(directoryPacth);
     // function listaitem() {
     if (files != '') {
-        console.log("1*entrou no if : " + JSON.stringify( valor.result));
-        console.log("2*entrou no if : " + JSON.stringify( valor.result.Retorno.Items));
-        let buscafor = JSON.stringify(valor[0].id);
-        //console.log("buca for " +buscafor);
+        let buscafor = JSON.stringify(valor.result[0].Retorno.Items.length);
+        console.log("buca for " +buscafor);
         let comparar;
         let n = 0;
         for (let i = 0; i < buscafor; i++) {
-            comparar = JSON.stringify(valor[i].id);
+            comparar = JSON.stringify(valor.result[0].Retorno.Items[i].ID);
             for (let j = 0; j < files.length; j++) {
                 if (files[j] == comparar + ".png") {
-                    console.log("file = " + files[j] + " / " + " comparar = " + comparar + ".png  -  id = " + valor[n].id);
+                   console.log("file = " + files[j] + " / " + " comparar = " + comparar + ".png  -  id = " + valor.result[0].Retorno.Items[n].ID);
                     console.log("compara = " + comparar);
                     content[j] = imageToUri(directoryPacth + '/' + files[j]);
-                    valorFinal[j] = { valorDefnido: valor[n], imagem: content[j] };
+                    valorFinal[j] = { valorDefnido: valor.result[0].Retorno.Items[n], imagem:content[j] };
+                    
                 }
             }
             n++;
@@ -79,11 +80,13 @@ exports.categorias = (req, res) => {
     var files = fs.readdirSync(directoryPacth);
     // function listaitem() {
     if (files != '') {
-        let buscafor = JSON.stringify(valor[0].id);
+        let buscafor = JSON.stringify(valor.result[0].Retorno.ID);
+
+        console.log("ID categorias" +valor.result[0].Retorno.ID)
         let comparar;
         let n = 0;
         for (let i = 0; i < buscafor; i++) {
-            comparar = JSON.stringify(valor[i].id);
+            comparar = JSON.stringify(valor.result[0].Retorno.ID);
             for (let j = 0; j < files.length; j++) {
                 if (files[j] == comparar + ".png") {
                     console.log("file = " + files[j] + " / " + " comparar = " + comparar + ".png  -  id = " + valor[n].id);
