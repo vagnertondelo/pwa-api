@@ -1,6 +1,6 @@
 'use strict';
 const request = require('request');
-const API = 'http://192.168.15.23:8074/datasnap/rest/Produto/Ler';
+const API = 'http://192.168.15.40:8074/datasnap/rest/Produto/Ler';
 var path = require('path');
 var fs = require('fs');
 const imageToUri = require('image-to-uri');
@@ -10,14 +10,13 @@ let content = [];
 
 //metodos que serão exportados para o front-end
 exports.ler = (req, res) => {
-    //console.log(res.params.id);
     requisicao(req.params.id);
     setTimeout(() => {
         content[0] = valor.result[0].Retorno;
         res.status(200).json({
             content
         });
-    }, 500); 
+    }, 400); 
     console.log("ID de busca" + req.params.id);
     
 };

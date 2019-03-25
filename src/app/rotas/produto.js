@@ -9,11 +9,11 @@ const controllerListar = require('../controller/produto/produto-listar-controlle
 const controllerLer = require('../controller/produto/produto-ler-controller');
 
     //controller Listar Produto
-    router.get('/bebidas', controllerListar.listaBebidas);
     router.get('/categorias', controllerListar.categorias);
     router.put('/:id', controllerListar.put);
     router.delete('/delete', controllerListar.delete);
     router.get('/listar', controllerListar.listar);
+    router.get('/lista/:categoria', controllerListar.listaCategoria);
 
     //controller Ler Produto
     router.get('/ler/:id',  controllerLer.ler);
